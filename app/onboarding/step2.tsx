@@ -1,24 +1,21 @@
 import { useRouter } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const OnboardingStep1 = () => {
+const OnboardingStep2 = () => {
   const router = useRouter();
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Onboarding</Text>
+      <Text style={styles.title}>Onboarding Step 2</Text>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => router.push("/onboarding/step2")}
-      >
-        <Text style={styles.buttonText}>Next</Text>
+      <TouchableOpacity style={styles.skipButton} onPress={() => {}}>
+        <Text style={styles.skipText}>Next</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default OnboardingStep1;
+export default OnboardingStep2;
 
 const styles = StyleSheet.create({
   container: {
@@ -34,6 +31,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 12,
     borderRadius: 8,
+    marginBottom: 10,
   },
   buttonText: { color: "white", fontSize: 16, fontWeight: "600" },
+  skipButton: { marginTop: 10 },
+  skipText: { color: "#666", fontSize: 14 },
 });
