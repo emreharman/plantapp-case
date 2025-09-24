@@ -1,20 +1,84 @@
+import Bg from "@/assets/images/onboarding1bg.png";
+import Button from "@/components/button";
+import Fonts from "@/constants/fonts";
 import { useRouter } from "expo-router";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useState } from "react";
+import {
+  Image,
+  ImageBackground,
+  Modal,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { WebView } from "react-native-webview";
 
 const OnboardingStep1 = () => {
   const router = useRouter();
+  const [modalVisible, setModalVisible] = useState(false);
+  const [pdfType, setPdfType] = useState<"terms" | "privacy" | null>(null);
+
+  const handleOpenModal = (type: "terms" | "privacy") => {
+    setPdfType(type);
+    setModalVisible(true);
+  };
+
+  const getPdfUrl = () => {
+    if (pdfType === "terms") {
+      return "https://online.flippingbook.com/view/602747966/";
+    }
+    if (pdfType === "privacy") {
+      return "https://online.flippingbook.com/view/602747966/";
+    }
+    return "";
+  };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Onboarding</Text>
+    <ImageBackground source={Bg} style={styles.container} resizeMode="cover">
+      <View style={styles.top}>
+        <Text style={styles.title}>
+          Welcome to <Text style={styles.highlight}>PlantApp</Text>
+        </Text>
+        <Text style={styles.subtitle}>
+          Identify more than 3000+ plants and{"\n"}88% accuracy.
+        </Text>
+      </View>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => router.push("/onboarding/step2")}
-      >
-        <Text style={styles.buttonText}>Next</Text>
-      </TouchableOpacity>
-    </View>
+      <View style={styles.middle}>
+        <Image
+          source={require("@/assets/images/onboarding1.png")}
+          style={styles.image}
+          resizeMode="contain"
+        />
+      </View>
+
+      <View style={styles.bottom}>
+        <Button
+          title="Get Started"
+          onPress={() => router.push("/onboarding/step2")}
+        />
+        <Text style={styles.footer}>
+          By tapping next, you are agreeing to PlantID{"\n"}
+          <Text style={styles.link} onPress={() => handleOpenModal("terms")}>
+            Terms of Use
+          </Text>{" "}
+          &{" "}
+          <Text style={styles.link} onPress={() => handleOpenModal("privacy")}>
+            Privacy Policy
+          </Text>
+          .
+        </Text>
+      </View>
+      <Modal visible={modalVisible} animationType="slide">
+        <SafeAreaView style={styles.modalContainer}>
+          <WebView source={{ uri: getPdfUrl() }} style={styles.webview} />
+          <View style={styles.modalFooter}>
+            <Button title="Close" onPress={() => setModalVisible(false)} />
+          </View>
+        </SafeAreaView>
+      </Modal>
+    </ImageBackground>
   );
 };
 
@@ -23,17 +87,56 @@ export default OnboardingStep1;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    paddingHorizontal: 24,
+    paddingTop: 80,
+  },
+  modalContainer: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+  webview: {
+    flex: 1,
+    width: "100%",
+  },
+  modalFooter: {
+    padding: 16,
+    backgroundColor: "#fff",
+  },
+  top: {
+    marginBottom: 20,
+  },
+  title: {
+    fontSize: 28,
+    fontFamily: Fonts.regular,
+    marginBottom: 12,
+  },
+  highlight: {
+    fontFamily: Fonts.bold,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: "#555",
+    lineHeight: 22,
+  },
+  middle: {
+    flex: 1,
     justifyContent: "center",
-    padding: 20,
   },
-  title: { fontSize: 24, fontWeight: "bold", marginBottom: 10 },
-  subtitle: { fontSize: 16, textAlign: "center", marginBottom: 30 },
-  button: {
-    backgroundColor: "#34C759",
+  image: {
+    width: "100%",
+    height: "100%",
+  },
+  bottom: {
+    marginBottom: 24,
+  },
+  footer: {
+    fontSize: 12,
+    color: "#597165B2",
+    textAlign: "center",
+    marginVertical: 12,
     paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderRadius: 8,
   },
-  buttonText: { color: "white", fontSize: 16, fontWeight: "600" },
+  link: {
+    textDecorationLine: "underline",
+  },
 });
