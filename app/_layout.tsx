@@ -9,6 +9,7 @@ import "react-native-reanimated";
 
 import Loading from "@/components/loading";
 import { useColorScheme } from "@/hooks/use-color-scheme";
+import { store } from "@/store";
 import {
   Rubik_400Regular,
   Rubik_500Medium,
@@ -17,6 +18,7 @@ import {
 } from "@expo-google-fonts/rubik";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import { Provider } from "react-redux";
 
 export const unstable_settings = {
   anchor: "(tabs)",
@@ -44,12 +46,14 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="onboarding" />
-        <Stack.Screen name="(tabs)" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="onboarding" />
+          <Stack.Screen name="(tabs)" options={{ gestureEnabled: false }} />
+        </Stack>
+        <StatusBar style="auto" />
+      </ThemeProvider>
+    </Provider>
   );
 }
