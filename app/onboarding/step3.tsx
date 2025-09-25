@@ -33,7 +33,7 @@ const OnboardingStep3 = () => {
       </ImageBackground>
 
       <View style={styles.bottom}>
-        <Button title="Continue" onPress={() => router.push("/onboarding")} />
+        <Button title="Continue" onPress={() => router.push("/onboarding/paywall")} />
         <View style={styles.dots}>
           <View style={[styles.dot, styles.inactiveDot]} />
           <View style={[styles.dot, styles.activeDot]} />
