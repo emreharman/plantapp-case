@@ -33,12 +33,20 @@ export default function Input({
   ...rest
 }: InputProps) {
   return (
-    <View style={[styles.container, containerStyle]}>
-      {icon && <Image source={icon} style={styles.icon} />}
+    <View style={[styles.container, containerStyle]} testID="input-container">
+      {icon && (
+        <Image
+          source={icon}
+          style={styles.icon}
+          testID="input-icon"
+          accessibilityRole="image"
+        />
+      )}
       <TextInput
         {...rest}
         style={[styles.input, style]}
         placeholderTextColor="#AFAFAF"
+        testID="text-input"
       />
       {right}
     </View>
