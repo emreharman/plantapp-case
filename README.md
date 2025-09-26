@@ -1,50 +1,97 @@
-# Welcome to your Expo app 👋
+# 🌱 PlantApp Case Study
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This repository contains the implementation of the **PlantApp React Native Case** given as a test project.  
+The app is built with **Expo**, **React Native**, and **Redux Toolkit**, following the requirements in the case document.
 
-## Get started
+---
 
-1. Install dependencies
+## 📖 Case Requirements vs. Implementation
 
-   ```bash
-   npm install
-   ```
+| Requirement (from case doc) | Implementation in repo |
+|-----------------------------|-------------------------|
+| Onboarding + Authentication flow | Implemented basic navigation using **expo-router**. Screens structured under `app/`. |
+| Home screen with **categories** and **questions** | Implemented via Redux slices (`category.slice.ts`, `question.slice.ts`) and `HomeScreen.tsx`. Categories shown in grid, questions shown in horizontal swipe list. |
+| Search bar in header | Implemented inside **ImageBackground** header with proper styling. |
+| API integration (fetch categories/questions) | Services created under `services/` (e.g., `CategoryService`, `QuestionService`). Data fetched with `createAsyncThunk` and stored in Redux. |
+| Redux state management | Used **Redux Toolkit** with slices (`store/slices/`). Added custom hooks (`useCategories`, `useQuestions`). |
+| Pull-to-refresh | Added via **RefreshControl** on Home screen, with smooth delay for better UX. |
+| Unit tests | Added under `__tests__/`|
 
-2. Start the app
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🗂 Project Structure
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+```
+plantapp-case/
+├── app/                      # Expo Router screens
+│   ├── (tabs)/               # Bottom tab navigator
+│   │   ├── _layout.tsx       # Tab layout (Home, Diagnose, Garden, Scan, Profile)
+│   │   ├── index.tsx         # Home screen
+│   │   ├── diagnose.tsx      # Diagnose screen
+│   │   ├── garden.tsx        # My Garden screen
+│   │   ├── profile.tsx       # Profile screen
+│   │   └── scan.tsx          # Scan screen (custom scan button in tab bar)
+│   │
+│   └── onboarding/           # Onboarding & paywall flow
+│       ├── index.tsx         # Onboarding entry
+│       ├── step2.tsx         # Onboarding Step 2
+│       ├── step3.tsx         # Onboarding Step 3
+│       └── paywall.tsx       # Paywall screen
+│
+├── assets/                   # Icons & images
+├── components/               # Shared UI components (Loading, Button, Input etc.)
+├── constants/                # Fonts, theme, colors
+├── hooks/                    # Custom hooks (useCategories, useQuestions)
+├── services/                 # API services (CategoryService, QuestionService)
+├── store/                    # Redux Toolkit slices & store hooks
+├── __tests__/                # Unit tests
+└── ...
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## 🚀 Getting Started
 
-To learn more about developing your project with Expo, look at the following resources:
+### 1. Install dependencies
+```bash
+yarn install
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### 2. Run development server
+```bash
+yarn start
+```
 
-## Join the community
+This will start the Expo development environment.
 
-Join our community of developers creating universal apps.
+### 3. Run tests
+```bash
+yarn test
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+## 🛠️ Tech Stack
+
+- **Expo** (React Native)
+- **expo-router** (navigation)
+- **Redux Toolkit** (state management)
+- **Axios** (API client)
+- **Jest & React Testing Library** (unit tests)
+- **TypeScript** (types & interfaces)
+
+---
+
+## ✅ Extra Features
+
+- Pull-to-refresh with smooth delay  
+- Keyboard dismiss on background press  
+- Unit tests for slices & components  
+- Performance-optimized FlatList usage  
+- Styled header with **ImageBackground**  
+- Consistent design with custom fonts & theme  
+
+
