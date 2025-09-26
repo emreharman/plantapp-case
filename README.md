@@ -11,7 +11,6 @@ The app is built with **Expo**, **React Native**, and **Redux Toolkit**, followi
 |-----------------------------|-------------------------|
 | Onboarding + Authentication flow | Implemented basic navigation using **expo-router**. Screens structured under `app/`. |
 | Home screen with **categories** and **questions** | Implemented via Redux slices (`category.slice.ts`, `question.slice.ts`) and `HomeScreen.tsx`. Categories shown in grid, questions shown in horizontal swipe list. |
-| Search bar in header | Implemented inside **ImageBackground** header with proper styling. |
 | API integration (fetch categories/questions) | Services created under `services/` (e.g., `CategoryService`, `QuestionService`). Data fetched with `createAsyncThunk` and stored in Redux. |
 | Redux state management | Used **Redux Toolkit** with slices (`store/slices/`). Added custom hooks (`useCategories`, `useQuestions`). |
 | Pull-to-refresh | Added via **RefreshControl** on Home screen, with smooth delay for better UX. |
