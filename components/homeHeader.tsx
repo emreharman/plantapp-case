@@ -1,5 +1,6 @@
 import Input from "@/components/input";
 import Fonts from "@/constants/fonts";
+import { useState } from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 
 interface HomeHeaderProps {
@@ -18,6 +19,8 @@ export default function HomeHeader({
   greeting = "Hi, plant lover!",
   title = "Good Afternoon! ⛅",
 }: HomeHeaderProps) {
+  const [search, setSearch] = useState("");
+
   return (
     <ImageBackground
       source={require("@/assets/images/homeHeaderBg.png")}
@@ -29,6 +32,8 @@ export default function HomeHeader({
         <Text style={styles.title}>{title}</Text>
         <Input
           placeholder="Search for plants"
+          value={search}
+          onChangeText={setSearch}
           icon={require("@/assets/icons/search.png")}
         />
       </View>
