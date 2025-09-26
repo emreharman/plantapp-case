@@ -86,11 +86,10 @@ yarn test
 
 ## ✅ Extra Features
 
-- Pull-to-refresh with smooth delay  
+- Pull-to-refresh
 - Keyboard dismiss on background press  
-- Unit tests for slices & components  
+- Unit tests for components  
 - Performance-optimized FlatList usage  
-- Styled header with **ImageBackground**  
 - Consistent design with custom fonts & theme  
 
 
