@@ -1,4 +1,5 @@
 import Fonts from "@/constants/fonts";
+import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type Props = {
@@ -18,28 +19,39 @@ export default function PaywallPlanCard({
   selected,
   onSelect,
 }: Props) {
+  const Wrapper: any = selected ? LinearGradient : View;
+
   return (
-    <TouchableOpacity
-      style={[styles.planBox, selected && styles.activePlanBox]}
-      onPress={() => onSelect(id)}
-      activeOpacity={0.8}
-    >
-      <View style={styles.row}>
-        <View style={[styles.radioOuter, selected && styles.radioOuterActive]}>
-          {selected && <View style={styles.radioInner} />}
+    <TouchableOpacity onPress={() => onSelect(id)} activeOpacity={0.8}>
+      <Wrapper
+        colors={
+          selected ? ["rgba(40,175,110,0.24)", "rgba(40,175,110,0)"] : undefined
+        }
+        start={{ x: 1, y: 0 }}
+        end={{ x: 0, y: 0 }}
+        style={[styles.planBox, selected && styles.activePlanBox]}
+      >
+        <View style={styles.row}>
+          <View
+            style={[styles.radioOuter, selected && styles.radioOuterActive]}
+          >
+            {selected && <View style={styles.radioInner} />}
+          </View>
+          <View>
+            <Text
+              style={[styles.planTitle, selected && styles.planTitleActive]}
+            >
+              {title}
+            </Text>
+            <Text style={styles.planSubtitle}>{subtitle}</Text>
+          </View>
         </View>
-        <View>
-          <Text style={[styles.planTitle, selected && styles.planTitleActive]}>
-            {title}
-          </Text>
-          <Text style={styles.planSubtitle}>{subtitle}</Text>
-        </View>
-      </View>
-      {badge && (
-        <View style={styles.planBadge}>
-          <Text style={styles.badgeText}>{badge}</Text>
-        </View>
-      )}
+        {badge && (
+          <View style={styles.planBadge}>
+            <Text style={styles.badgeText}>{badge}</Text>
+          </View>
+        )}
+      </Wrapper>
     </TouchableOpacity>
   );
 }
@@ -50,13 +62,15 @@ const styles = StyleSheet.create({
     height: 60,
     borderWidth: 1,
     borderColor: "#FFFFFF4D",
-    borderRadius: 12,
+    borderRadius: 14,
     paddingHorizontal: 16,
     marginBottom: 20,
-    backgroundColor: "#FFFFFF0D",
     justifyContent: "center",
+    overflow: "hidden",
   },
-  activePlanBox: { borderColor: "#28AF6E", backgroundColor: "#28AF6E3D" },
+  activePlanBox: {
+    borderColor: "#28AF6E",
+  },
   row: { flexDirection: "row", alignItems: "center", gap: 12 },
   planTitle: { color: "#fff", fontFamily: Fonts.medium, fontSize: 16 },
   planTitleActive: { color: "#fff" },
