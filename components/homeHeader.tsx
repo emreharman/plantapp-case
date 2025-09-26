@@ -2,15 +2,22 @@ import Input from "@/components/input";
 import Fonts from "@/constants/fonts";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 
-type Props = {
+interface HomeHeaderProps {
   greeting?: string;
   title?: string;
-};
+}
 
+/**
+ * @name HomeHeader
+ * @description A header component for the home screen that displays a greeting, a title, and a search input
+ * @param {string} [greeting="Hi, plant lover!"] - Optional greeting text to display above the title
+ * @param {string} [title="Good Afternoon! ⛅"] - Optional title text to display below the greeting
+ * @returns {JSX.Element} Rendered HomeHeader component
+ */
 export default function HomeHeader({
   greeting = "Hi, plant lover!",
   title = "Good Afternoon! ⛅",
-}: Props) {
+}: HomeHeaderProps) {
   return (
     <ImageBackground
       source={require("@/assets/images/homeHeaderBg.png")}

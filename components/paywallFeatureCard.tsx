@@ -1,13 +1,31 @@
 import Fonts from "@/constants/fonts";
-import { Image, StyleSheet, Text, View } from "react-native";
+import {
+    Image,
+    ImageSourcePropType,
+    StyleSheet,
+    Text,
+    View,
+} from "react-native";
 
-type Props = {
-  icon: any;
+type PaywallFeatureCardProps = {
+  icon: ImageSourcePropType;
   title: string;
   subtitle: string;
 };
 
-export default function PaywallFeatureCard({ icon, title, subtitle }: Props) {
+/**
+ * @name PaywallFeatureCard
+ * @description A card component to display a feature in the paywall screen
+ * @param {ImageSourcePropType} icon - The icon to display for the feature
+ * @param {string} title - The title of the feature
+ * @param {string} subtitle - The subtitle or description of the feature
+ * @returns {JSX.Element} Rendered feature card
+ */
+export default function PaywallFeatureCard({
+  icon,
+  title,
+  subtitle,
+}: PaywallFeatureCardProps) {
   return (
     <View style={styles.card}>
       <View style={styles.iconWrapper}>

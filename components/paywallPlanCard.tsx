@@ -2,7 +2,7 @@ import Fonts from "@/constants/fonts";
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-type Props = {
+type PaywallPlanCardProps = {
   id: string;
   title: string;
   subtitle: string;
@@ -11,6 +11,17 @@ type Props = {
   onSelect: (id: string) => void;
 };
 
+/**
+ * @name PaywallPlanCard
+ * @description A selectable subscription plan card with optional badge and gradient background when active.
+ * @param {string} id - The unique identifier of the plan
+ * @param {string} title - The plan title
+ * @param {string} subtitle - The plan subtitle or description
+ * @param {string} [badge] - Optional badge text displayed in the corner
+ * @param {boolean} selected - Whether the plan is currently selected
+ * @param {(id: string) => void} onSelect - Callback triggered when the plan is pressed
+ * @returns {JSX.Element} Rendered subscription plan card
+ */
 export default function PaywallPlanCard({
   id,
   title,
@@ -18,7 +29,7 @@ export default function PaywallPlanCard({
   badge,
   selected,
   onSelect,
-}: Props) {
+}: PaywallPlanCardProps) {
   const Wrapper: any = selected ? LinearGradient : View;
 
   return (

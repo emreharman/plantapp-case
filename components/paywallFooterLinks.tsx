@@ -1,10 +1,18 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-type Props = {
+type PaywallFooterLinksProps = {
   onPress: (type: "terms" | "privacy" | "restore") => void;
 };
 
-export default function PaywallFooterLinks({ onPress }: Props) {
+/**
+ * @name PaywallFooterLinks
+ * @description Footer links for the paywall screen, including Terms, Privacy, and Restore actions
+ * @param {(type: "terms" | "privacy" | "restore") => void} onPress - Callback when a footer link is pressed
+ * @returns {JSX.Element} Rendered footer links component
+ */
+export default function PaywallFooterLinks({
+  onPress,
+}: PaywallFooterLinksProps) {
   return (
     <View style={styles.footerLinks}>
       <TouchableOpacity onPress={() => onPress("terms")}>

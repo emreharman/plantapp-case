@@ -1,9 +1,25 @@
 import Fonts from "@/constants/fonts";
 import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 
-type Props = { title: string; imageUrl: string; onPress?: () => void };
+interface CategoryCardProps {
+  title: string;
+  imageUrl: string;
+  onPress?: () => void;
+}
 
-export default function CategoryCard({ title, imageUrl, onPress }: Props) {
+/**
+ * @name CategoryCard
+ * @description A card component used to display a category with an image and title
+ * @param {string} title - The category title text
+ * @param {string} imageUrl - The image URL to be displayed as the card background
+ * @param {function} [onPress] - Optional callback when the card is pressed
+ * @returns {JSX.Element} Rendered CategoryCard component
+ */
+export default function CategoryCard({
+  title,
+  imageUrl,
+  onPress,
+}: CategoryCardProps) {
   return (
     <TouchableOpacity style={styles.card} activeOpacity={0.8} onPress={onPress}>
       <Image source={{ uri: imageUrl }} style={styles.image} />

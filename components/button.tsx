@@ -1,17 +1,25 @@
 import Fonts from "@/constants/fonts";
 import React from "react";
 import {
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    TouchableOpacityProps,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  TouchableOpacityProps,
 } from "react-native";
 
-type Props = {
+interface ButtonProps extends TouchableOpacityProps {
   title: string;
-} & TouchableOpacityProps;
+}
 
-const Button: React.FC<Props> = ({ title, style, ...props }) => {
+/**
+ * @name Button
+ * @description A reusable button component built on top of TouchableOpacity.
+ * @param {string} title - The text to display inside the button.
+ * @param {TouchableOpacityProps} props - Inherits all TouchableOpacity props (e.g., onPress, disabled, etc.)
+ * @returns {JSX.Element} - Rendered Button component.
+ */
+
+const Button: React.FC<ButtonProps> = ({ title, style, ...props }) => {
   return (
     <TouchableOpacity style={[styles.button, style]} {...props}>
       <Text style={styles.text}>{title}</Text>

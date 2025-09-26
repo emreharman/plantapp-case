@@ -1,6 +1,12 @@
 import Fonts from "@/constants/fonts";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
+/**
+ * @name PremiumBanner
+ * @description Banner component displayed on the home screen to promote premium upgrade.
+ * It includes an icon, title, subtitle, and a right arrow indicator.
+ * @returns {JSX.Element} Rendered premium banner component
+ */
 export default function PremiumBanner() {
   return (
     <TouchableOpacity style={styles.container} activeOpacity={0.8}>
